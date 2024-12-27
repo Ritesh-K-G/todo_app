@@ -1,0 +1,18 @@
+
+docker pull mariadb
+docker run --name mariadb-container-new \
+  -e MYSQL_ROOT_PASSWORD=123 \
+  -e MYSQL_USER=admin \
+  -e MYSQL_PASSWORD=123 \
+  -e MYSQL_DATABASE=todo_db \
+  -d \
+  -p 3306:3306 \
+  -v /my/local/datadir:/var/lib/mysql \
+  mariadb
+
+
+# For running mariadb container
+docker start mariadb-container
+docker exec -it mariadb-container mariadb -u admin -p
+password: 123
+docker stop mariadb-container
