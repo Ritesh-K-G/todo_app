@@ -1,3 +1,6 @@
 com/todo_project/todo_backendConfiguration.class
 com/todo_project/todo_backendApplication.class
+com/todo_project/todo_backendConfiguration$DatabaseConfig.class
+com/todo_project/utils/Pair.class
+com/todo_project/utils/Status.class
 com/todo_project/api/Route.class
