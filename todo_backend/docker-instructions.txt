@@ -12,7 +12,13 @@ docker run --name mariadb-container-new \
 
 
 # For running mariadb container
+ensure : sudo systemctl stop mysql
 docker start mariadb-container
 docker exec -it mariadb-container mariadb -u admin -p
 password: 123
 docker stop mariadb-container
+
+
+# For running the application
+mvn clean install
+java -jar target/todo-backend-1.0-SNAPSHOT.jar server config.yml
