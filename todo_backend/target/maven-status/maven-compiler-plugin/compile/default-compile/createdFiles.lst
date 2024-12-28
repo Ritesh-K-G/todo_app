@@ -1,8 +1,9 @@
-com/todo_project/Todo.class
+com/todo_project/dao/TodoDAO.class
 com/todo_project/utils/Pair.class
+com/todo_project/resources/TodoResource.class
 com/todo_project/utils/Status.class
-com/todo_project/TodoResource.class
+com/todo_project/models/Todo.class
 com/todo_project/TodoBackendApplication$1.class
-com/todo_project/TodoDAO.class
 com/todo_project/TodoBackendConfiguration.class
 com/todo_project/TodoBackendApplication.class
+com/todo_project/models/Progress.class

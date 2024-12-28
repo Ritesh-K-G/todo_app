@@ -22,3 +22,32 @@ docker stop mariadb-container
 # For running the application
 mvn clean install
 java -jar target/todo-backend-1.0-SNAPSHOT.jar server config.yml
+
+# Test schema
+CREATE TABLE todos (
+     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+     task VARCHAR(255) NOT NULL,
+     completed BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+# Actual schema
+CREATE TABLE todos (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    startTime DATETIME NOT NULL,
+    endTime DATETIME NOT NULL,
+    status VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE progress (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    todo_id BIGINT NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    timestamp DATETIME NOT NULL,
+    FOREIGN KEY (todo_id) REFERENCES todos(id) ON DELETE CASCADE
+);
+
+
+
+ALTER TABLE todos CHANGE start_time startTime DATETIME;

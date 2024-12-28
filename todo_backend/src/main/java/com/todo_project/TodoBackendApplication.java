@@ -1,5 +1,9 @@
 package com.todo_project;
 
+import com.todo_project.models.Todo;
+import com.todo_project.models.Progress;
+import com.todo_project.resources.TodoResource;
+import com.todo_project.dao.TodoDAO;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.setup.Bootstrap;
@@ -11,7 +15,7 @@ import io.dropwizard.Configuration;
 public class TodoBackendApplication extends Application<TodoBackendConfiguration> {
 
     private final HibernateBundle<TodoBackendConfiguration> hibernateBundle =
-            new HibernateBundle<TodoBackendConfiguration>(Todo.class) {
+            new HibernateBundle<TodoBackendConfiguration>(Todo.class, Progress.class) {
                 @Override
                 public DataSourceFactory getDataSourceFactory(TodoBackendConfiguration configuration) {
                     return configuration.getDataSourceFactory();
@@ -35,7 +39,8 @@ public class TodoBackendApplication extends Application<TodoBackendConfiguration
     @Override
     public void run(TodoBackendConfiguration configuration, Environment environment) {
         final SessionFactory sessionFactory = hibernateBundle.getSessionFactory();
-        final TodoResource todoResource = new TodoResource(sessionFactory);
+        final TodoDAO todoDAO = new TodoDAO(sessionFactory);
+        final TodoResource todoResource = new TodoResource(todoDAO);
         environment.jersey().register(todoResource);
     }
 }
