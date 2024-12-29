@@ -1,3 +1,0 @@
-databaseUrl: jdbc:mariadb://localhost:3306/todo_db
-databaseUsername: admin
-databasePassword: 123
