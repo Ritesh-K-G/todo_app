@@ -1,26 +1,77 @@
 .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-title {
-    font-size: 24px;
-    margin: 0 0 8px;
-  }
-  
-  .card-description {
-    font-size: 16px;
-    color: #555;
-    margin: 0 0 12px;
-  }
-  
-  .card-dates {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #777;
-  }
-  
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* For positioning the status badge */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.card-description {
+  font-size: 16px;
+  color: #555;
+  margin: 0 0 12px;
+}
+
+.card-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #777;
+}
+
+.card-status {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #fff;
+}
+
+.status-completed {
+  background-color: #4caf50; /* Green for completed */
+}
+
+.status-pending {
+  background-color: #ff9800; /* Orange for pending */
+}
+
+.status-deleted {
+  background-color: #f44336; /* Red for deleted */
+}
+
+/* Updated Button Styles */
+.card-details-btn {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.card-details-btn:hover {
+  background-color: #0056b3;
+}
+
+.card-details-btn:focus {
+  outline: none;
+  box-shadow: 0 0 4px #007bff;
+}
