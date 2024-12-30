@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import TabView from "./components/TabView.jsx";
+import TabView from "./components/TabComponents/TabView.jsx";
+import MyModal from "./components/FormComponents/FormModal.jsx";
 import "./App.css";
-import "./Modal.css";
 
 const App = () => {
   return (
@@ -47,38 +47,6 @@ const Navbar = () => {
       </div>
       {isModalOpen && <MyModal closeModal={closeModal} />}
     </nav>
-  );
-};
-
-const MyModal = ({ closeModal }) => {
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-modal" onClick={closeModal}>✖</button>
-        <h2>Add New Mission</h2>
-        <form>
-          <div className="form-group">
-            <label htmlFor="missionName">Mission Name</label>
-            <input type="text" id="missionName" placeholder="Enter mission name" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="missionDetails">Mission Details</label>
-            <textarea id="missionDetails" placeholder="Enter mission details"></textarea>
-          </div>
-          <div className="form-group">
-            <label htmlFor="startDate">Start Date</label>
-            <input type="datetime-local" id="startDate" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="deadline">Deadline</label>
-            <input type="datetime-local" id="deadline" />
-          </div>
-          <div className="form-group">
-            <button type="submit" className="submit-btn">Add Mission</button>
-          </div>
-        </form>
-      </div>
-    </div>
   );
 };
 

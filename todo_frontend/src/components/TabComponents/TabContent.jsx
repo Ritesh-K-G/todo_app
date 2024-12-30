@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Card from "../CardComponents/Card";
 import "./TabContent.css";
 
 const TabContent = ({ activeTab, tabData }) => {
