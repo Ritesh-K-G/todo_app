@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./Modal.css";
+import ProgressTimeline from "./ProgressTimeline";
 
 const Modal = ({ isOpen, onClose, card }) => {
   if (!isOpen) return null;
 
-  const [status, setStatus] = useState(card.status);
+  const status = card.status;
 
   const statusMapper = new Map();
   statusMapper.set("CREATED", "ASSIGNED");
@@ -13,17 +14,51 @@ const Modal = ({ isOpen, onClose, card }) => {
   statusMapper.set("DONE", "DONE");
   statusMapper.set("DELETED", "DELETED");
 
-  const handleInProgress = () => {
+  const handleInProgress = async () => {
     if (status === "CREATED") {
-      setStatus("WIP");
-      updateCardStatus(card.id, "WIP");
+      try {
+        const url = `http://localhost:8080/todos/${card.id}/markWIP`;
+        const response = await fetch(url, {
+          method: 'PATCH',
+        });
+    
+        if (response.ok) {
+          console.log("Task moved to in progress successfully");
+          window.location.reload();
+        } else {
+          console.error("Failed to update task", response.status);
+          alert("Failed to update the card. Please try again.");
+        }
+        onClose();
+      } catch (error) {
+        console.error("Error occurred while updating the task:", error);
+        alert("An error occurred while updating the task. Please try again.");
+        onClose();
+      }
     }
   };
 
-  const handleMarkDone = () => {
+  const handleMarkDone = async () => {
     if (status === "WIP") {
-      setStatus("DONE");
-      updateCardStatus(card.id, "DONE");
+      try {
+        const url = `http://localhost:8080/todos/${card.id}/markDone`;
+        const response = await fetch(url, {
+          method: 'PATCH',
+        });
+    
+        if (response.ok) {
+          console.log("Task marked done successfully");
+          window.location.reload();
+        } else {
+          console.error("Failed to update task", response.status);
+          alert("Failed to update the task. Please try again.");
+        }
+        onClose();
+      } catch (error) {
+        console.error("Error occurred while updating the task:", error);
+        alert("An error occurred while updating the task. Please try again.");
+        onClose();
+      }
     }
   };
 
@@ -39,6 +74,7 @@ const Modal = ({ isOpen, onClose, card }) => {
           <p><strong>Start Date:</strong> {card.startDate}</p>
           <p><strong>Deadline:</strong> {card.deadline}</p>
           <p><strong>Status:</strong> {statusMapper.get(status)}</p>
+          {/* <ProgressTimeline updates={card.progress}/> */}
         </div>
 
         {/* Action Buttons */}
