@@ -4,10 +4,11 @@
   padding: 16px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* For positioning the status badge */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* height: 200px; */
 }
 
 .card-title {
@@ -30,29 +31,37 @@
 
 .card-status {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  bottom: 8px;
+  left: 8px;
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 12px;
   font-weight: bold;
   text-transform: capitalize;
   color: #fff;
+  margin: 10px;
 }
 
-.status-completed {
-  background-color: #4caf50; /* Green for completed */
+.status-created {
+  background-color: #2196F3;
 }
 
 .status-pending {
-  background-color: #ff9800; /* Orange for pending */
+  background-color: #FF9800;
 }
 
 .status-deleted {
-  background-color: #f44336; /* Red for deleted */
+  background-color: #F44336;
 }
 
-/* Updated Button Styles */
+.status-done {
+  background-color: #4CAF50;
+}
+
+.status-updated {
+  background-color: #2196F3;
+}
+
 .card-details-btn {
   align-self: flex-end;
   background-color: #007bff;
@@ -74,4 +83,121 @@
 .card-details-btn:focus {
   outline: none;
   box-shadow: 0 0 4px #007bff;
+}
+
+/* Confirmation Modal */
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's on top of all other content */
+}
+
+.confirmation-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.confirmation-btn-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.confirmation-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.confirmation-btn:hover {
+  opacity: 0.8;
+}
+
+.confirmation-btn.delete {
+  background-color: #F44336;
+  color: white;
+  border: none;
+}
+
+.confirmation-btn.move {
+  background-color: #FF9800;
+  color: white;
+  border: none;
+}
+
+.restore {
+  background-color: green;
+  color: white;
+  border: none;
+}
+
+.confirmation-btn.cancel {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}
+
+.confirmation-btn:focus {
+  outline: none;
+  box-shadow: 0 0 4px #007bff;
+}
+
+.card-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-restore-btn, .card-trash-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #2196F3;
+}
+
+.card-restore-btn {
+  color: #4CAF50;
+  margin-right: 10px;
+}
+
+.card-restore-btn:hover {
+  color: #388E3C;
+}
+
+/* Trash Icon Button */
+.card-trash-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 5px;
+  color: #F44336;
+}
+
+.card-trash-btn:hover {
+  color: #D32F2F;
+}
+
+.card-restore-btn {
+  position: absolute;
+  right: 25px;
 }

@@ -55,7 +55,7 @@ public class TodoBackendApplication extends Application<TodoBackendConfiguration
         // Configure CORS parameters
         cors.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "*"); // Allow all origins
         cors.setInitParameter(CrossOriginFilter.ALLOWED_HEADERS_PARAM, "X-Requested-With,Content-Type,Accept,Origin,Authorization");
-        cors.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+        cors.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "OPTIONS,GET,PUT,POST,DELETE,HEAD,PATCH");
         cors.setInitParameter(CrossOriginFilter.ALLOW_CREDENTIALS_PARAM, "true");
 
         // Add URL mapping
