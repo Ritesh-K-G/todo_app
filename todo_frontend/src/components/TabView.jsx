@@ -9,7 +9,7 @@ const TabView = () => {
   const tabData = [
     {
       id: 1,
-      title: "Tab 1",
+      title: "All Missions",
       cards: [
         {
           title: "Card 1",
@@ -87,7 +87,7 @@ const TabView = () => {
     },
     {
       id: 2,
-      title: "Tab 2",
+      title: "Pending Missions",
       cards: [
         {
           title: "Card 3",
@@ -99,7 +99,7 @@ const TabView = () => {
     },
     {
       id: 3,
-      title: "Tab 3",
+      title: "Completed Missions",
       cards: [
         {
           title: "Card 4",
@@ -117,7 +117,7 @@ const TabView = () => {
     },
     {
       id: 4,
-      title: "Tab 4",
+      title: "Forgotten Missions",
       cards: [],
     },
   ];

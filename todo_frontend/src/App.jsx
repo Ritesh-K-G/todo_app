@@ -8,16 +8,13 @@ const App = () => {
       <Navbar />
       <main className="content">
         <div className="main-layout">
-          {/* Animation or GIF */}
           <div className="animation-container">
             <img
-              src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif"
+              src="/checklist.gif"
               alt="Animated GIF"
               className="animation"
             />
           </div>
-
-          {/* Tab View */}
           <div className="tab-view-container">
             <TabView />
           </div>
@@ -30,9 +27,12 @@ const App = () => {
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="navbar-logo">ToDo App</div>
+      <div className="navbar-logo">
+        <img src="/logo.png" alt="App Logo" className="logo" />
+        <span className="app-name">Shinobi Planner</span> 
+      </div>
       <div className="navbar-menu">
-        <button className="profile-button">Add Task</button>
+        <button className="addTask-button">+ New Mission</button>
       </div>
     </nav>
   );
