@@ -74,7 +74,7 @@ const Modal = ({ isOpen, onClose, card }) => {
           <p><strong>Start Date:</strong> {card.startDate}</p>
           <p><strong>Deadline:</strong> {card.deadline}</p>
           <p><strong>Status:</strong> {statusMapper.get(status)}</p>
-          {/* <ProgressTimeline updates={card.progress}/> */}
+          <ProgressTimeline data={card.progress}/>
         </div>
 
         {/* Action Buttons */}
