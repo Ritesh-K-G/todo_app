@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UpdateModal from './UpdateModal';
 import Modal from "./Modal";
 import "./Card.css";
 
@@ -6,6 +7,7 @@ const Card = ({ card }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isConfirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
   const [isRestoreModalOpen, setRestoreModalOpen] = useState(false);
+  const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -109,6 +111,7 @@ const Card = ({ card }) => {
   const handleCancel = () => {
     setRestoreModalOpen(false);
     setConfirmDeleteOpen(false);
+    setUpdateModalOpen(false);
   };
 
   return (
@@ -132,6 +135,12 @@ const Card = ({ card }) => {
             </button>
           )}
 
+          {card.status !== "DELETED" && card.status !== "DONE" && (
+            <button className="card-update-btn" onClick={() => setUpdateModalOpen(true)}>
+              <i class="fa-regular fa-pen-to-square"></i> {/* FontAwesome Update Icon */}
+            </button>
+          )}
+
           {/* Trash Icon Button */}
           <button className="card-trash-btn" onClick={handleDeleteClick}>
             <i className="fas fa-trash-alt"></i>
@@ -148,6 +157,8 @@ const Card = ({ card }) => {
       </div>
 
       <Modal isOpen={isModalOpen} card={card} onClose={() => setModalOpen(false)} />
+
+      <UpdateModal isOpen={isUpdateModalOpen} card={card} onClose={() => setUpdateModalOpen(false)}/>
 
       {/* Confirmation Modal for Delete */}
       {isConfirmDeleteOpen && (
@@ -170,6 +181,7 @@ const Card = ({ card }) => {
         </div>
       )}
 
+      {/* Confirmation Modal for restore */}
       {isRestoreModalOpen && (
         <div className="confirmation-modal">
           <div className="confirmation-modal-content">

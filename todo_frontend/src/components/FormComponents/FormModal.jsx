@@ -58,8 +58,8 @@ const MyModal = ({ closeModal }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="form-modal-overlay">
+      <div className="form-modal-content">
         <button className="close-modal" onClick={closeModal}>✖</button>
         <h2>Add New Mission</h2>
         <form onSubmit={handleSubmit}>
