@@ -2,6 +2,7 @@ package com.todo_project.resources;
 
 import com.todo_project.dao.TodoDAO;
 import com.todo_project.models.Todo;
+import com.todo_project.validators.CustomValidator;
 import io.dropwizard.hibernate.UnitOfWork;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -27,6 +28,9 @@ public class TodoResource {
     @POST
     @UnitOfWork
     public Response createTodo(Todo todo) {
+        if (!CustomValidator.validTodo(todo)) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
         Todo createdTodo = todoDAO.create(todo);
         return Response.status(Response.Status.CREATED).entity(createdTodo).build();
     }
@@ -53,12 +57,15 @@ public class TodoResource {
     @PATCH
     @UnitOfWork
     public Response updateTodoTask(Todo todo) {
+        if (!CustomValidator.validTodo(todo)) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
         Todo existingTodo = todoDAO.findById(todo.getId());
         if (existingTodo != null) {
             todoDAO.updateTodo(existingTodo, todo);
             return Response.status(Response.Status.OK).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @Path("/{id}/markWIP")
@@ -66,11 +73,11 @@ public class TodoResource {
     @UnitOfWork
     public Response markTodoWIP(@PathParam("id") long id) {
         Todo todo = todoDAO.findById(id);
-        if (todo != null) {
+        if (todo != null && CustomValidator.validForWIP(todo.getStatus())) {
             todoDAO.moveToWIP(todo);
             return Response.status(Response.Status.OK).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @Path("/{id}/markDone")
@@ -78,11 +85,11 @@ public class TodoResource {
     @UnitOfWork
     public Response markTodoDone(@PathParam("id") long id) {
         Todo todo = todoDAO.findById(id);
-        if (todo != null) {
+        if (todo != null && CustomValidator.validForDone(todo.getStatus())) {
             todoDAO.markDone(todo);
             return Response.status(Response.Status.OK).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @Path("/{id}/moveToBin")
@@ -90,11 +97,11 @@ public class TodoResource {
     @UnitOfWork
     public Response moveIntoBin(@PathParam("id") long id) {
         Todo todo = todoDAO.findById(id);
-        if (todo != null) {
+        if (todo != null && CustomValidator.validForBin(todo.getStatus())) {
             todoDAO.moveToBin(todo);
             return Response.status(Response.Status.OK).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @Path("/{id}/restoreFromBin")
@@ -102,10 +109,10 @@ public class TodoResource {
     @UnitOfWork
     public Response restoreFromTheBin(@PathParam("id") long id) {
         Todo todo = todoDAO.findById(id);
-        if (todo != null) {
+        if (todo != null && CustomValidator.validForRestore(todo.getStatus())) {
             todoDAO.restoreFromBin(todo);
             return Response.status(Response.Status.OK).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 }
