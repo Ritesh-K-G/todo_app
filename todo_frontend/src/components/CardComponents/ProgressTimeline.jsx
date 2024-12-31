@@ -34,24 +34,26 @@ const ProgressTimeline = ({ data }) => {
     statusMapper.set("DELETED", "DELETED");
 
     return (
-        <div className="timeline-scroll-container">
+        <>
             <div className="timeline-header">
                 <h2>Progress Timeline</h2>
             </div>
-            <div className="timeline-container">
-                {data.map((item, index) => (
-                    <div className="circle-container" key={index}>
-                        <div className="status">{statusMapper.get(item.status)}</div>
-                        <div className="circle-wrapper">
-                            <div className="circle"></div>
-                            {index < data.length - 1 && <div className="connector"></div>}
+            <div className="timeline-scroll-container">
+                <div className="timeline-container">
+                    {data.map((item, index) => (
+                        <div className="circle-container" key={index}>
+                            <div className="status">{statusMapper.get(item.status)}</div>
+                            <div className="circle-wrapper">
+                                <div className="circle"></div>
+                                {index < data.length - 1 && <div className="connector"></div>}
+                            </div>
+                            <div className="timestamp">{giveDate(item.timestamp)}</div>
+                            <div className="timestamp">{giveTime(item.timestamp)}</div>
                         </div>
-                        <div className="timestamp">{giveDate(item.timestamp)}</div>
-                        <div className="timestamp">{giveTime(item.timestamp)}</div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -98,7 +98,7 @@ const UpdateModal = ({ isOpen, onClose, card }) => {
     <div className="form-modal-overlay">
       <div className="form-modal-content">
         <button className="modal-close" onClick={onClose}>
-          &times;
+        ✖
         </button>
         <h2 className="modal-title">Update Mission Details</h2>
         <form onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
 /* Modal Overlay */
-.modal-overlay {
+.details-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,14 +13,16 @@
 }
 
 /* Modal Content */
-.modal-content {
+.details-modal-content {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  width: auto !important;
+  width: 400px;
   max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: modalFadeIn 0.3s ease-out;
+  position: relative;
+  z-index: 10000;
 }
 
 /* Modal Header */
@@ -50,7 +52,7 @@
 }
 
 /* Close Button */
-.modal-close {
+.details-modal-close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -58,10 +60,10 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #333;
+  color: #60259f;
 }
 
-.modal-close:hover {
+.details-modal-close:hover {
   color: #60259f;
 }
 

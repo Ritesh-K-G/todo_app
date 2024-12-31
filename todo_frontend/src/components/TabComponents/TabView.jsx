@@ -11,9 +11,19 @@ const TabView = () => {
   const transformProgressToTableData = ((progressList) => {
     var myProgressList = [];
     progressList.map((progress) => {
+      progress.timestamp[1] = progress.timestamp[1] - 1;
       const myProgress = {
         status: progress.status,
-        timestamp: new Date(...progress.timestamp).toUTCString()
+        timestamp: new Date(...progress.timestamp).toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          weekday: "short",
+          year: "numeric",         
+          month: "short",
+          day: "2-digit",          
+          hour: "2-digit",         
+          minute: "2-digit",       
+          second: "2-digit",       
+        })
       }
       myProgressList.push(myProgress);
     });
@@ -44,14 +54,34 @@ const TabView = () => {
       },
     ];
     response.map((todo) => {
+      todo.startTime[1] = todo.startTime[1] - 1;
+      todo.endTime[1] = todo.endTime[1] - 1;
       const myProgress = transformProgressToTableData(todo.progress);
       var cardData = {
         id: todo.id,
         title: todo.title,
         description: todo.description,
         status: todo.status,
-        startDate: new Date(...todo.startTime).toUTCString(),
-        deadline: new Date(...todo.endTime).toUTCString(),
+        startDate: new Date(...todo.startTime).toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          weekday: "short",
+          year: "numeric",         
+          month: "short",
+          day: "2-digit",          
+          hour: "2-digit",         
+          minute: "2-digit",       
+          second: "2-digit",       
+        }),
+        deadline: new Date(...todo.endTime).toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          weekday: "short",
+          year: "numeric",         
+          month: "short",
+          day: "2-digit",          
+          hour: "2-digit",         
+          minute: "2-digit",       
+          second: "2-digit",       
+        }),
         progress: myProgress
       };
       if (todo.status !== "DELETED") {
@@ -67,7 +97,6 @@ const TabView = () => {
         cardListData[3].cards.push(cardData);
       }
     });
-    console.log(cardListData);
     return cardListData;
   };
 
@@ -81,7 +110,6 @@ const TabView = () => {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        console.log(data);
         const myFilteredData = transformResponseToTableData(data);
         setTabData(myFilteredData);
       } catch (error) {

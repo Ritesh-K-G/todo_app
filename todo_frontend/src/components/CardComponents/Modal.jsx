@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Modal.css";
-import ProgressTimeline from "./ProgressTimeline";
+import ProgressTimeline from "./ProgressTimeline.jsx";
 
 const Modal = ({ isOpen, onClose, card }) => {
   if (!isOpen) return null;
@@ -63,10 +63,10 @@ const Modal = ({ isOpen, onClose, card }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          &times;
+    <div className="details-modal-overlay">
+      <div className="details-modal-content">
+        <button className="details-modal-close" onClick={onClose}>
+        ✖
         </button>
         <h2 className="modal-title">{card.title}</h2>
         <p className="modal-description">{card.description}</p>
