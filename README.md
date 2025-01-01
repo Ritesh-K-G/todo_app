@@ -89,3 +89,10 @@ Stopping the containers: To stop the application and remove the containers, run:
 ```
 docker-compose down
 ```
+
+Screenshots:
+---
+
+![WhatsApp Image 2025-01-01 at 17 28 52](https://github.com/user-attachments/assets/80863d29-a28c-423a-bbef-25f54e45a26e)
+
+![WhatsApp Image 2025-01-01 at 17 28 52(1)](https://github.com/user-attachments/assets/97978251-2c77-4018-9650-877f3e3a35db)
