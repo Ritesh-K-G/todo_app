@@ -23,13 +23,6 @@ docker stop mariadb-container
 mvn clean install
 java -jar target/todo-backend-1.0-SNAPSHOT.jar server config.yml
 
-# Test schema
-CREATE TABLE todos (
-     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-     task VARCHAR(255) NOT NULL,
-     completed BOOLEAN NOT NULL DEFAULT FALSE
-);
-
 # Actual schema
 CREATE TABLE todos (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -48,6 +41,10 @@ CREATE TABLE progress (
     FOREIGN KEY (todo_id) REFERENCES todos(id) ON DELETE CASCADE
 );
 
+# Docker
+docker-compose down -v
+docker-compose build --no-cache
+# Then Create Tables
 
-
-ALTER TABLE todos CHANGE start_time startTime DATETIME;
+docker-compose up
+docker-compose down
